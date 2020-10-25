@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
-namespace project_bag
+namespace projectbag
 {
     public partial class Form3 : Form
     {
@@ -18,34 +18,17 @@ namespace project_bag
             InitializeComponent();
         }
 
-        private void btndisplay_Click(object sender, EventArgs e)
+        private void textBox6_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-
-
-                string MyConnection2 = "datasource=localhost;port=3306;username=root;password=;database=bag";
-                string Query = "select * from customer;";
-                MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
-                MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
-                MySqlDataAdapter MyAdapter = new MySqlDataAdapter();
-                MyAdapter.SelectCommand = MyCommand2;
-
-                DataTable dTable = new DataTable();
-
-                MyAdapter.Fill(dTable);
-                dataGridView1.DataSource = dTable;
-
-                // MyConn2.Close(); 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
 
         }
 
-        private void bntadd_Click(object sender, EventArgs e)
+        private void Form3_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnadd_Click(object sender, EventArgs e)
         {
             try
             {
@@ -53,7 +36,7 @@ namespace project_bag
                 string MyConnection2 = "datasource=localhost;port=3306;username=root;password=;database=bag";
 
                 string Query = "insert into customer (id_customer,name_customer,last_customer,tel_customer,line_customer,address_customer) " +
-                "values('" + this.txtid_customer.Text + "','" + this.txtname_customer.Text + "','" + this.txtlast_customer.Text + "','"+this.txttel_customer.Text + "','"+ this.txtline_customer.Text + "','" + this.txtaddress_customer.Text + "');";
+                "values('" + this.txtid_customer.Text + "','" + this.txtname_customer.Text + "','" + this.txtlast_customer.Text + "','" + this.txttel_customer.Text + "','" + this.txtline_customer.Text + "','" + this.txtaddress_customer.Text + "');";
 
                 MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
 
@@ -89,7 +72,7 @@ namespace project_bag
 
 
                 string MyConnection2 = "datasource=localhost;port=3306;username=root;password=;database=bag";
-                string Query = "update customer set name_customer ='" + this.txtname_customer.Text + "',last_customer='" + this.txtlast_customer.Text + "',line_customer ='"+this.txtline_customer.Text + "',tel_customer ='"+this.txttel_customer.Text+ "' where id_customer='" + this.txtid_customer.Text + "';";
+                string Query = "update customer set name_customer ='" + this.txtname_customer.Text + "',last_customer='" + this.txtlast_customer.Text + "',line_customer ='" + this.txtline_customer.Text + "',tel_customer ='" + this.txttel_customer.Text + "' where id_customer='" + this.txtid_customer.Text + "';";
 
 
                 MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
@@ -170,12 +153,39 @@ namespace project_bag
 
         }
 
-        private void btnnext_Click(object sender, EventArgs e)
+        private void btndisplay_Click(object sender, EventArgs e)
         {
+            try
             {
-                Form4 f4 = new Form4();
-                f4.ShowDialog();
+
+
+                string MyConnection2 = "datasource=localhost;port=3306;username=root;password=;database=bag";
+                string Query = "select * from customer;";
+                MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
+                MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
+                MySqlDataAdapter MyAdapter = new MySqlDataAdapter();
+                MyAdapter.SelectCommand = MyCommand2;
+
+                DataTable dTable = new DataTable();
+
+                MyAdapter.Fill(dTable);
+                dataGridView1.DataSource = dTable;
+
+                // MyConn2.Close(); 
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void btnback_Click(object sender, EventArgs e)
+        {
+           
         }
     }
-}
+    }
+    
+    
+    
